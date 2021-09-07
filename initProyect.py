@@ -8,47 +8,67 @@ use -h/--help for more options
 """
 def farguments():
   parser = argparse.ArgumentParser(description=DESCRIPTION)
-  parser.add_argument('-h')
-  parser.add_argument('--help')
-  parser.add_argument('-s',type=str)
-  parser.add_argument('-size',type=str)
+  parser.add_argument("proyectName")
+  parser.add_argument("-s","--size",type=str,default="medium",help="scale of proyect (default: medium)  small,medium,big.")
+  parser.add_argument("-l","--programmingLanguage",type=str,default="",help="programming language for init files")
   return parser.parse_args()
-
-def readmeTemplate(name,):
-	return f"""
+def createFile(name,content):
+  with open(name, 'w') as file:
+    file.write(content)
+    file.close()
+class genTemplate():
+  def __init__(self,proyectName,author,programmingLanguage=""):
+    self.name=proyectName
+    self.language=programmingLanguage
+    self.extencion=""
+    self.user=author
+  def programmingLanguages():
+    """
+    return programming language extencion ,run with, installing depencies and chose setup file
+    """
+    if self.language=="python":
+      self.extencion=".py"
+      self.runOnTerminal="python "+str(name)+self.extencion
+      self.mainFile=f"""#!/usr/bin/env python 
+# -*- coding: utf-8 -*-"
+#{self.name} - by {self.user}
+def main():
+  pass;'''some code here'''
+if __name__=='__main__':
+  main()
+"""
+    return languageTags
+  def readmeTemplate(name,preparations="\n",user=""):
+    return f"""
 # {name}
 
 ### features 
 ### Screenshots
 ### Installing
-Download repo
+**Download repositories**
 
-	git clone https://github.com/jero98772/{name}.git
+  git clone https://github.com/{user}/{name}.git
+
+**Run:**  
+  
+  {self.runOnTerminal}
 
 ### Made for:
 #### Ethical purpose
 #### Non-ethical purpose
 """
-def createFile(name,content):
-  with open(name, 'w') as file:
-    file.write(content)
-    file.close()
-def smallProyect(name):
-  os.mkdir(name)
-  os.mkdir(name+"/misc")
-  createFile("readme.md",README)
-  createFile("readme.md",content)
+  def smallProyect(self,name):
+    os.mkdir(name)
+    os.mkdir(name+"/misc")
+    createFile("readme.md",readmeTemplate(name,user="jero98772"))
+    createFile(name+self.extencion,content)
+  #def installDepenciesTemplate():
 #def mediumProyect():
 #def bigProyect():
 #add mi lib
-def help():
-  return """
-Usage:
-
-python initProyect.py <Proyect name> [Options]
-\t-s\tSize of proyect (default: medium) ")\n\t\t[1]small,\n\t\t[2]medium,\n\t\t[3]big.
-"""
 def main():
   arguments=farguments()
-  proyectSize=sys.argv[1]
+  if arguments.size == "small":
+    smallProyect(name)
+  print(arguments.proyectName)
 main()
