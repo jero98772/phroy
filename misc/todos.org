@@ -1,0 +1,46 @@
+*  
+** classes 
+** generatorBase
+*** attributes
+**** name
+**** size
+**** programing langue
+*** methods
+**** create readme content(name,user,installer="",dependences="");string
+**** file structure generator, create folders and files with  content
+**** create main file of proyect langue(name="main");
+** generatorBase()
+*** attributes
+*** methods
+**** readme
+with structure,runing,description,Screenshots and download
+**** file structure
+     
+*** notes
+ file name ="main"
+** medium(generatorBase)
+*** attributes
+*** notes
+ file name ="main"
+** big
+*** file structure   
+*** notes
+file name = proyect name
+** web inteface  proyect (addon)
+** data base securiti(addon)
+** attributes
+** methods
+*** readme  
+**** structure
+**** run
+**** installing 
+**** show Screenshots
+**** donate 
+** functios
+*** arguments manage();void
+*** file and content file creator(name,content);void
+*** programing langue select content;
+** todos
+*** chose name
+*** how to make a addon(or plugin )
+inherit classes and overwritinig
