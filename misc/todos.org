@@ -14,8 +14,7 @@
 *** methods
 **** readme
 with structure,runing,description,Screenshots and download
-**** file structure
-     
+**** file structure   
 *** notes
  file name ="main"
 ** medium(generatorBase)

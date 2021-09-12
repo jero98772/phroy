@@ -49,9 +49,11 @@ if __name__=='__main__':
   main()
 """
       self.extencion=".py"
+    if self.pl == "java":
+      self.mainFile=f"//{self.name} - by {self.author}\n"+f"class {self.name} "+"{\n    public static void main(String[] args) {\n        System.out.println();\n     }\n}"
+      self.extencion=".java"
     else:
       print(self.pl+" no prescribed code was found to generate a project in that language. add it if you like.")
-
   def structureFiles(self):
     os.mkdir(self.name)
     os.mkdir(self.name+"/misc")
