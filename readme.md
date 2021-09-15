@@ -14,7 +14,8 @@ is a python project initializer, which organizes the initial structure and conte
 
 
 ### Screenshots
-![main](https://github.com/jero98772/phory/blob/main/misc/screenshots/tree.png)
+
+![main](https://raw.githubusercontent.com/jero98772/phroy/main/misc/screenshots/tree.png?token=ACZB27P5ELU2V2G3DR7KEUDBIIIPY)
 
 ### Installing
 **Download repositories**
@@ -23,7 +24,7 @@ is a python project initializer, which organizes the initial structure and conte
 
 **Run:**  
 
-	python phory.py
+	python phory.py <proyectName>
 
 ### Made for:
 
