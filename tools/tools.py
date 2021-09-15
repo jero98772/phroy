@@ -22,9 +22,7 @@ class generatorBase:
     self.name=name
     self.author=author
     self.pl=programingLangue
-    self.readmeTemplate = f"""
-# {name}
-
+    self.readmeTemplate = f"""# {name}
 ### features 
 ### Screenshots
 ### Installing
@@ -40,10 +38,9 @@ class generatorBase:
 """
   def programingLangueFile(self):
     if self.pl == "python":
-      self.header==f"""#!/usr/bin/env python
+      self.header=f"""#!/usr/bin/env python
 # -*- coding: utf-8 -*-"
-#{self.name} - by {self.author}
-"""
+#{self.name} - by {self.author}"""
       self.mainFile=self.header+f"""
 def main():
   pass;'''some code here'''
@@ -68,6 +65,7 @@ class medium(generatorBase):
     os.mkdir(self.name+"/misc")
     os.mkdir(self.name+"/misc/screenshots")
     createFile(self.name+"/readme.md",self.readmeTemplate)
+    createFile(self.name+"/misc/todos.org","* TODO´S")
     createFile(self.name+"/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
 class bigProyect(generatorBase):
@@ -77,7 +75,10 @@ class bigProyect(generatorBase):
     os.mkdir(self.name+"/data")
     os.mkdir(self.name+"/docs")
     os.mkdir(self.name+"/core/tools")
+    createFile(self.name+"/docs/todos.org","* TODO´S")
+    createFile(self.name+"/docs/Notes.org","* Notes")    
     createFile(self.name+"/readme.md",self.readmeTemplate)
+    createFile(self.name+"/core/tools/__init__"+self.extencion,self.header)
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.header)    
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
@@ -93,9 +94,12 @@ class flaskWebProyect(generatorBase):
     os.mkdir(self.name+"/core/static/js")
     os.mkdir(self.name+"/core/static/css")
     os.mkdir(self.name+"/core/static/img")
+    createFile(self.name+"/docs/todos.org","* TODO´S")
+    createFile(self.name+"/docs/Notes.org","* Notes")
     createFile(self.name+"/core/templates/index.html",self.indexFile)
     createFile(self.name+"/core/templates/template.html",self.templateFile)
     createFile(self.name+"/readme.md",self.readmeTemplate)
+    createFile(self.name+"/core/tools/__init__"+self.extencion,self.header)
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.mainFile)    
     createFile(self.name+"/"+self.name+self.extencion,self.runFile)
@@ -113,7 +117,7 @@ class flaskWebProyect(generatorBase):
 {% endblock %}
 """
     if self.pl == "python":
-      self.header==f"""#!/usr/bin/env python
+      self.header=f"""#!/usr/bin/env python
 # -*- coding: utf-8 -*-"
 #{self.name} - by {self.author}
 """

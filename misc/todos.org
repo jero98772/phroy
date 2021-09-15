@@ -1,6 +1,6 @@
-*  
+
 ** classes 
-** generatorBase
+** DONE generatorBase
 *** attributes
 **** name
 **** size
@@ -9,7 +9,7 @@
 **** create readme content(name,user,installer="",dependences="");string
 **** file structure generator, create folders and files with  content
 **** create main file of proyect langue(name="main");
-** generatorBase()
+** DONE small(generatorBase)
 *** attributes
 *** methods
 **** readme
@@ -17,16 +17,17 @@ with structure,runing,description,Screenshots and download
 **** file structure   
 *** notes
  file name ="main"
-** medium(generatorBase)
+** DONE medium(generatorBase)
 *** attributes
 *** notes
  file name ="main"
-** big
+** DONE big
 *** file structure   
 *** notes
 file name = proyect name
-** web inteface  proyect (addon)
+** DONE web inteface  proyect with flask (addon)
 ** data base securiti(addon)
+** download my lib
 ** attributes
 ** methods
 *** readme  
