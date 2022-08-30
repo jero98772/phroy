@@ -1,5 +1,20 @@
 # phory
 
+<code>   
+     ρρρρρρρ   
+   ρρ    ρρρρ  
+  ρρ       ρρρ 
+  ρρ       ρρρ 
+  ρρ        ρρ 
+  ρρ        ρρ 
+  ρρ       ρρ  
+  ρρρ     ρρ   
+  ρρ ρρρρρ     
+  ρρ           
+  ρρ           
+ ρρρ           
+ ρρρ           
+</code>
 is a python project initializer, which organizes the initial structure and content of the project in different ways according to the required work and impact of the project, this is called project size, for cli.
 
 	positional arguments:
