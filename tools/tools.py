@@ -82,7 +82,7 @@ class bigProyect(generatorBase):
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.header)    
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
-class flaskWebProyect(generatorBase):
+class flaskWebBigProyect(generatorBase):
   def structureFiles(self):
     os.mkdir(self.name)
     os.mkdir(self.name+"/core")
@@ -103,6 +103,22 @@ class flaskWebProyect(generatorBase):
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.mainFile)    
     createFile(self.name+"/"+self.name+self.extencion,self.runFile)
+class flaskWebProyect(generatorBase):
+  def structureFiles(self):
+    os.mkdir(self.name)
+    os.mkdir(self.name+"/tools")
+    os.mkdir(self.name+"/templates")
+    os.mkdir(self.name+"/static")
+    os.mkdir(self.name+"/static/js")
+    os.mkdir(self.name+"/static/css")
+    os.mkdir(self.name+"/static/img")
+    createFile(self.name+"/templates/index.html",self.indexFile)
+    createFile(self.name+"/templates/template.html",self.templateFile)
+    createFile(self.name+"/readme.md",self.readmeTemplate)
+    createFile(self.name+"/tools/__init__"+self.extencion,self.header)
+    createFile(self.name+"/tools/tools"+self.extencion,self.header)
+    createFile(self.name+"/"+self.name+self.extencion,self.mainFile+self.runFile[-77:])
+
   def programingLangueFile(self):
     self.indexFile ="""
 {% extends  'template.html'%}

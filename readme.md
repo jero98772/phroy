@@ -20,12 +20,20 @@ is a python project initializer, which organizes the initial structure and conte
 	  proyectName
 	optional arguments:
 	  -h, --help            show this help message and exit
-	  -s SIZE, --size SIZE  scale of proyect (default: medium) small,medium,big,flaskBig.
+	  -s SIZE, --size SIZE  scale of proyect (default: medium) small,medium,big,flaskBig,flask.
 	  -a AUTHOR, --author AUTHOR
 	                        name of who did it
 	  -l PROGRAMMINGLANGUAGE, --programmingLanguage PROGRAMMINGLANGUAGE
 	                        programming language for init files(defualt: python,only suported now)
+### Examples
 
+build file structure of flask
+
+	python phroy.py <name> -s flask -a <author> -l python
+
+build my file system
+
+	python phroy.py <name> -s flaskBig -a <author> -l python
 
 ### Screenshots
 

@@ -17,8 +17,12 @@ def main():
     g=bigProyect(arguments.proyectName,arguments.author,arguments.programmingLanguage)
     g.programingLangueFile()
     g.structureFiles()
-  if arguments.size == "flaskBig":
+  if arguments.size == "flask":
     g=flaskWebProyect(arguments.proyectName,arguments.author,arguments.programmingLanguage)
+    g.programingLangueFile()
+    g.structureFiles()
+  if arguments.size == "flaskBig":
+    g=flaskWebBigProyect(arguments.proyectName,arguments.author,arguments.programmingLanguage)
     g.programingLangueFile()
     g.structureFiles()
   print("proyect "+arguments.proyectName+" was create successfully")

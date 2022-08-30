@@ -1,7 +1,7 @@
 from setuptools import setup, 
 setup(
 	name='phory',
-	version='1.0.0',
+	version='1.1.0',
 	license='GPLv3',
 	author_email='jero98772@protonmail.com',
 	author='jero98772',
