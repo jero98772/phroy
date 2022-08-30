@@ -42,4 +42,4 @@ is a python project initializer, which organizes the initial structure and conte
 
 ### Made for:
 
-init python proyects for github repository automatically, to save time
+create python proyects for github repository automatically, to save time
