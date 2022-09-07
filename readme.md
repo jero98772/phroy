@@ -37,7 +37,9 @@ build my file system
 
 ### Screenshots
 
-![main](https://raw.githubusercontent.com/jero98772/phroy/main/misc/screenshots/tree.png?token=ACZB27P5ELU2V2G3DR7KEUDBIIIPY)
+![tree](https://raw.githubusercontent.com/jero98772/phroy/main/misc/screenshots/tree.png?token=ACZB27P5ELU2V2G3DR7KEUDBIIIPY)
+
+![data](https://raw.githubusercontent.com/jero98772/phroy/main/misc/screenshots/data.png?token=ACZB27P5ELU2V2G3DR7KEUDBIIIPY)
 
 ### Installing
 **Download repositories**

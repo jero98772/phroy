@@ -58,6 +58,43 @@ if __name__=='__main__':
     os.mkdir(self.name+"/misc")
     createFile(self.name+"/readme.md",self.readmeTemplate)
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
+class flaskBase(generatorBase):
+    def programingLangueFile(self):
+      self.indexFile ="""
+{% extends  'template.html'%}
+{% block content %} 
+   
+{% endblock  %}
+"""
+      self.templateFile =f"<h1>{self.name}</h1>"+"""
+<hr>
+{% block content %}
+
+{% endblock %}
+"""
+      if self.pl == "python":
+        self.header=f"""#!/usr/bin/env python
+# -*- coding: utf-8 -*-"
+#{self.name} - by {self.author}
+"""
+        self.mainFile=self.header+f"""
+from flask import Flask, render_template, request, flash, redirect ,session
+app = Flask(__name__)
+class webpage():
+  @app.route("/")
+  def index():
+    return render_template("index.html")
+      """
+        self.runFile=self.header+f"""
+from core.main import webpage
+from core.main import app
+if __name__ == "__main__":
+  app.run(debug=True,host="127.0.0.1",port=5000)
+"""
+        self.extencion=".py"
+      else:
+        print(self.pl+" no prescribed code was found to generate a project in that language. add it if you like.")
+
 class medium(generatorBase):
   def structureFiles(self):
     os.mkdir(self.name)
@@ -82,7 +119,7 @@ class bigProyect(generatorBase):
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.header)    
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
-class flaskWebBigProyect(generatorBase):
+class flaskWebBigProyect(flaskBase):
   def structureFiles(self):
     os.mkdir(self.name)
     os.mkdir(self.name+"/core")
@@ -103,7 +140,7 @@ class flaskWebBigProyect(generatorBase):
     createFile(self.name+"/core/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/core/main"+self.extencion,self.mainFile)    
     createFile(self.name+"/"+self.name+self.extencion,self.runFile)
-class flaskWebProyect(generatorBase):
+class flaskWebProyect(flaskBase):
   def structureFiles(self):
     os.mkdir(self.name)
     os.mkdir(self.name+"/tools")
@@ -118,39 +155,3 @@ class flaskWebProyect(generatorBase):
     createFile(self.name+"/tools/__init__"+self.extencion,self.header)
     createFile(self.name+"/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile+self.runFile[-77:])
-
-  def programingLangueFile(self):
-    self.indexFile ="""
-{% extends  'template.html'%}
-{% block content %} 
-   
-{% endblock  %}
-"""
-    self.templateFile =f"<h1>{self.name}</h1>"+"""
-<hr>
-{% block content %}
-
-{% endblock %}
-"""
-    if self.pl == "python":
-      self.header=f"""#!/usr/bin/env python
-# -*- coding: utf-8 -*-"
-#{self.name} - by {self.author}
-"""
-      self.mainFile=self.header+f"""
-from flask import Flask, render_template, request, flash, redirect ,session
-app = Flask(__name__)
-class webpage():
-  @app.route("/")
-  def index():
-    return render_template("index.html")
-      """
-      self.runFile=self.header+f"""
-from core.main import webpage
-from core.main import app
-if __name__ == "__main__":
-  app.run(debug=True,host="127.0.0.1",port=5000)
-"""
-      self.extencion=".py"
-    else:
-      print(self.pl+" no prescribed code was found to generate a project in that language. add it if you like.")
