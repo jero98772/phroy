@@ -1,10 +1,22 @@
 import argparse
 import os
-DESCRIPTION ="""
+DESCRIPTION="""
 create template for proyects
 run:
 \n\tpython initProyect.py <Proyect name> [Options]
-use -h/--help for more options 
+use -h/--help for more options\n
+Description:
+Size -s:\n
+\t[option]:\t description
+\t[main]:\t only main function in code
+\t[medium]:\t a larger file structure for big scripts and functions
+\t[big]:\t a larger file structure for production code
+
+ProgrammingLanguage -l:\n
+\t[option]:\t description
+\t[main]:\t go,java,c++,python
+\t[medium]:\t python
+\t[big]:\t 
 """
 def readtxtstr(name):
   """
@@ -16,6 +28,9 @@ def readtxtstr(name):
       content += str(i)
   return content
 def formatFile(name,author,code):
+    """
+    format templete file 
+    """
     try:
       return code.format(name=name,author=author)
     except:
@@ -23,11 +38,11 @@ def formatFile(name,author,code):
       code=code.replace("{author}",author)
       return code
 def farguments():
-  parser = argparse.ArgumentParser(description=DESCRIPTION)
+  parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=DESCRIPTION)
   parser.add_argument("proyectName")
-  parser.add_argument("-s","--size",type=str,default="medium",help="scale of proyect (default: medium)  small,medium,big,flaskBig.")
+  parser.add_argument("-s","--size",type=str,default="medium",help="scale of proyect (default: medium)  main,small,medium,big,flaskBig.")
   parser.add_argument("-a","--author",type=str,default="me",help="name of who did it")
-  parser.add_argument("-l","--programmingLanguage",type=str,default="python",help="programming language for init files(defualt: python,only suported now)")
+  parser.add_argument("-l","--programmingLanguage",type=str,default="python",help="programming language for init files(defualt: python)")
   return parser.parse_args()
 
 def createFile(name,content):
@@ -41,7 +56,9 @@ class templatesNames:
     self.htmlJingaIndex="templates/htmlJingaIndex.html"
     self.readmeMd="templates/readme.md"
     self.pythonMain="templates/pythonMain.py"
-
+    self.javaMain="templates/javaMain.java"
+    self.goMain="templates/goMain.go"
+    self.cppMain="templates/cppMain.cpp"
 class generatorBase(templatesNames):
   def __init__(self,name,author,programingLangue):
     templatesNames.__init__(self)
@@ -50,12 +67,22 @@ class generatorBase(templatesNames):
     self.pl=programingLangue
     self.readmeTemplate=formatFile(self.name,self.author,readtxtstr(self.readmeMd))
   def programingLangueFile(self):
-    if self.pl == "python":
+    if self.pl == "python" or self.pl=="py":
+      self.header="#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{name} - by {author}"
       self.mainFile=formatFile(self.name,self.author,readtxtstr(self.pythonMain))
       self.extencion=".py"
     if self.pl == "java":
-      self.mainFile=f"//{self.name} - by {self.author}\n"+f"class {self.name} "+"{\n    public static void main(String[] args) {\n        System.out.println();\n     }\n}"
+      self.header=f"//{self.name} - by {self.author}\n"
+      self.mainFile=formatFile(self.name,self.author,readtxtstr(self.javaMain))
       self.extencion=".java"
+    if self.pl == "go":
+      self.header=f"//{self.name} - by {self.author}\n"
+      self.mainFile=formatFile(self.name,self.author,readtxtstr(self.goMain))
+      self.extencion=".go"
+    if self.pl == "cpp" or self.pl == "c++" :
+      self.header=f"//{self.name} - by {self.author}\n"
+      self.mainFile=formatFile(self.name,self.author,readtxtstr(self.cppMain))
+      self.extencion=".cpp"
     else:
       print(self.pl+" no prescribed code was found to generate a project in that language. add it if you like.")
   def structureFiles(self):
@@ -66,13 +93,10 @@ class generatorBase(templatesNames):
 class flaskBase(generatorBase):
     def programingLangueFile(self):
       self.indexFile =readtxtstr(self.htmlJingaIndex)
+      self.extencion=".py"
       self.templateFile =formatFile(self.name,self.author,readtxtstr(self.htmlJingaTemplate))
-      if self.pl == "python":
-        self.header=f"""#!/usr/bin/env python
-# -*- coding: utf-8 -*-"
-#{self.name} - by {self.author}
-"""
-        self.mainFile=self.header+f"""
+      self.header="#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{name} - by {author}"
+      self.mainFile=self.header+f"""
 from flask import Flask, render_template, request, flash, redirect ,session
 app = Flask(__name__)
 class webpage():
@@ -80,15 +104,12 @@ class webpage():
   def index():
     return render_template("index.html")
       """
-        self.runFile=self.header+f"""
+      self.runFile=self.header+f"""
 from core.main import webpage
 from core.main import app
 if __name__ == "__main__":
   app.run(debug=True,host="127.0.0.1",port=5000)
 """
-        self.extencion=".py"
-      else:
-        print(self.pl+" no prescribed code was found to generate a project in that language. add it if you like.")
 
 class medium(generatorBase):
   def structureFiles(self):

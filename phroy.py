@@ -5,7 +5,7 @@
 from tools.tools import farguments,generatorBase,medium,bigProyect,flaskWebProyect,flaskWebBigProyect
 def main():
   arguments=farguments()
-  if arguments.size == "small":
+  if arguments.size == "main":
     g=generatorBase(arguments.proyectName,arguments.author,arguments.programmingLanguage)
     g.programingLangueFile()
     g.structureFiles()
