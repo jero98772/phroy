@@ -1,12 +1,13 @@
 import argparse
 import os
+from datetime import datetime
 DESCRIPTION="""
 create template for proyects
 run:
 \n\tpython initProyect.py <Proyect name> [Options]
 use -h/--help for more options\n
 Description:
-Size -s:\n
+type -t:\n
 \t[option]:\t description
 \t[main]:\t only main function in code
 \t[medium]:\t a larger file structure for big scripts and functions
@@ -37,20 +38,43 @@ def formatFile(name,author,code):
       code=code.replace("{name}",name)
       code=code.replace("{author}",author)
       return code
+def formatFileCp(code,name,date,link=""):
+    """
+    format templete file for competitive programing
+    """
+    try:
+      return code.format(name=name,date=date,link=link)
+    except:
+      code=code.replace("{date}",date)
+      code=code.replace("{link}",link)
+      code=code.replace("{name}",name)
+      return code
 def farguments():
+  """
+  configure arguments
+  """
   parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=DESCRIPTION)
   parser.add_argument("proyectName")
-  parser.add_argument("-s","--size",type=str,default="medium",help="scale of proyect (default: medium)  main,small,medium,big,flaskBig.")
-  parser.add_argument("-a","--author",type=str,default="me",help="name of who did it")
-  parser.add_argument("-l","--programmingLanguage",type=str,default="python",help="programming language for init files(defualt: python)")
+  parser.add_argument("-t","--type",type=str,default="medium",help="scale of proyect (default: medium)  main,small,medium,big,flaskBig,flask,goweb.")
+  parser.add_argument("-a","--author",nargs='?',type=str,default="me",help="name of who did it")
+  parser.add_argument("-l","--programmingLanguage",nargs='?',type=str,default="python",help="programming language for init files(defualt: python)")
+  parser.add_argument("-np","--numberofproblems",nargs='?',type=str,default="1",help="select amount of problem in the contest")
+  parser.add_argument("-u","--url",type=str,default="",help="link of contest")
+
   return parser.parse_args()
 
 def createFile(name,content):
+  """
+  create empty file
+  """
   with open(name, 'w') as file:
     file.write(content)
     file.close()
 
 class templatesNames:
+  """
+  variables of templates
+  """
   def __init__(self):
     self.htmlJingaTemplate="templates/htmlJingaTemplate.html"
     self.htmlJingaIndex="templates/htmlJingaIndex.html"
@@ -58,6 +82,7 @@ class templatesNames:
     self.pythonMain="templates/pythonMain.py"
     self.javaMain="templates/javaMain.java"
     self.goMain="templates/goMain.go"
+    self.goWeb="templates/goWeb.go"
     self.cppMain="templates/cppMain.cpp"
 class generatorBase(templatesNames):
   def __init__(self,name,author,programingLangue):
@@ -171,3 +196,32 @@ class flaskWebProyect(flaskBase):
     createFile(self.name+"/tools/__init__"+self.extencion,self.header)
     createFile(self.name+"/tools/tools"+self.extencion,self.header)
     createFile(self.name+"/"+self.name+self.extencion,self.mainFile+self.runFile[-77:])
+class goweb(medium):
+  """
+  create file structure for web proyects in go, with html file, go files for tools and backend and others
+  """
+  def structureFiles(self):
+    self.mainFile=formatFile(self.name,self.author,readtxtstr(self.goWeb))
+    os.mkdir(self.name)
+    os.mkdir(self.name+"/tools")
+    os.mkdir(self.name+"/misc")
+    os.mkdir(self.name+"/templates")
+    os.mkdir(self.name+"/misc/screenshots")
+    createFile(self.name+"/readme.md",self.readmeTemplate)
+    createFile(self.name+"/misc/todos.org","* TODO´S")
+    createFile(self.name+"/tools/tools"+self.extencion,self.header)
+    createFile(self.name+"/templates/index.html",f"<!--{self.name} by {self.author}-->")
+    createFile(self.name+"/"+self.name+self.extencion,self.mainFile)
+class competitivePrograming():
+    def __init__(self,name,link="",templatesPath="templates/competitivePrograming/"):
+      self.ext=name[name.find("."):]
+      self.name=name[:name.find(".")]
+      self.alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      self.date=datetime.today().strftime("%d-%m-%Y")
+      self.content=formatFileCp(readtxtstr(templatesPath+name),self.name,self.date,link=link)
+    def structureFiles(self,numberproblems):
+      folder=self.name+self.date
+      os.mkdir(folder)
+      for i in range(int(numberproblems)):
+        createFile(folder+"/"+self.alphabet[i]+self.ext,self.content)
+
