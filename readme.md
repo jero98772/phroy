@@ -34,16 +34,16 @@ is a python project initializer, which organizes the initial structure and conte
 
 build file structure of python flask
 
-	python phroy.py <name> -s flask -a <author> -l python
+	python phroy.py <name> -t flask -a <author> -l python
 
 build my file system
 
-	python phroy.py <name> -s flaskBig -a <author> -l python
+	python phroy.py <name> -t flaskBig -a <author> -l python
 
 
 build file structure of go web code
 
-	python phroy.py <name> -s goweb -a <author> -l go
+	python phroy.py <name> -t goweb -a <author> -l go
 
 prepare for a contest
 
