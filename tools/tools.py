@@ -120,7 +120,7 @@ class flaskBase(generatorBase):
       self.indexFile =readtxtstr(self.htmlJingaIndex)
       self.extencion=".py"
       self.templateFile =formatFile(self.name,self.author,readtxtstr(self.htmlJingaTemplate))
-      self.header="#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{name} - by {author}"
+      self.header=f"#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{self.name} - by {self.author}"
       self.mainFile=self.header+f"""
 from flask import Flask, render_template, request, flash, redirect ,session
 app = Flask(__name__)
