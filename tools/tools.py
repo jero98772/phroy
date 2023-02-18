@@ -93,7 +93,7 @@ class generatorBase(templatesNames):
     self.readmeTemplate=formatFile(self.name,self.author,readtxtstr(self.readmeMd))
   def programingLangueFile(self):
     if self.pl == "python" or self.pl=="py":
-      self.header="#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{name} - by {author}"
+      self.header=f"#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#{self.name} - by {self.author}"
       self.mainFile=formatFile(self.name,self.author,readtxtstr(self.pythonMain))
       self.extencion=".py"
     if self.pl == "java":
