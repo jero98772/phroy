@@ -1,5 +1,5 @@
 # {name}
-### features 
+### Features 
 ### Screenshots
 ### Installing
 **Download repositories**
@@ -10,4 +10,3 @@
 
 ### Made for:
 #### Ethical purpose
-#### Non-ethical purpose
